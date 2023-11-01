@@ -69,75 +69,131 @@ class MainApp extends StatelessWidget {
           ),
         ],
       ),
-      body: Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0),
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(24),
-                color: ColorPalette().iconBackgroundColor,
-              ),
-              child: const TextField(
-                textAlignVertical: TextAlignVertical.center,
-                decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.search),
-                  border: InputBorder.none,
-                  hintText: "Search",
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(24),
+                  color: ColorPalette().iconBackgroundColor,
+                ),
+                child: const TextField(
+                  textAlignVertical: TextAlignVertical.center,
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.search),
+                    border: InputBorder.none,
+                    hintText: "Search",
+                  ),
                 ),
               ),
             ),
-          ),
-          const Gap(8),
-          //Online User ListView
-          SizedBox(
-            height: 100,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: itemLength,
-              itemBuilder: (context, index) {
-                final isLastItem = index == 9;
-                final isFirstItem = index == 0;
-                return Padding(
-                  padding: EdgeInsets.only(
-                    left: isFirstItem ? 16.0 : 8.0,
-                    right: isLastItem ? 16.0 : 8.0,
-                  ),
-                  child: Column(
-                    children: [
-                      badges.Badge(
-                        badgeContent: const SizedBox(
-                          height: 10.0,
-                          width: 10.0,
+            const Gap(8),
+            //Online User ListView
+            SizedBox(
+              height: 104,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: itemLength,
+                itemBuilder: (context, index) {
+                  final isLastItem = index == 9;
+                  final isFirstItem = index == 0;
+                  return Padding(
+                    padding: EdgeInsets.only(
+                      left: isFirstItem ? 16.0 : 8.0,
+                      right: isLastItem ? 16.0 : 8.0,
+                    ),
+                    child: Column(
+                      children: [
+                        badges.Badge(
+                          badgeContent: const SizedBox(
+                            height: 10.0,
+                            width: 10.0,
+                          ),
+                          position: badges.BadgePosition.bottomEnd(
+                              end: -2, bottom: -4),
+                          badgeStyle: badges.BadgeStyle(
+                            badgeColor: ColorPalette().onlineColor,
+                            borderSide: BorderSide(
+                                color: ColorPalette().mainWhiteColor, width: 3),
+                          ),
+                          child: const CircleAvatar(
+                            radius: 30,
+                          ),
                         ),
-                        position:
-                            badges.BadgePosition.bottomEnd(end: -2, bottom: -4),
-                        badgeStyle: badges.BadgeStyle(
-                          badgeColor: ColorPalette().onlineColor,
-                          borderSide: BorderSide(
-                              color: ColorPalette().mainWhiteColor, width: 3),
-                        ),
-                        child: const CircleAvatar(
-                          radius: 30,
+                        const Gap(4),
+                        const SizedBox(
+                          width: 60,
+                          child: Text(
+                            "Ferry\nGunawan",
+                            textAlign: TextAlign.center,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        )
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+            //Tab
+            DefaultTabController(
+              length: 2, // Number of tabs (choices)
+              child: Column(
+                children: [
+                  // Tab Bar
+                  TabBar(
+                    labelColor: Colors.black,
+                    indicatorColor: Colors.transparent,
+                    tabs: [
+                      Tab(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: ColorPalette().iconBackgroundColor,
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Center(
+                            child: Text("HOME"),
+                          ),
                         ),
                       ),
-                      const Gap(4),
-                      const SizedBox(
-                        width: 60,
-                        child: Text(
-                          "Ferry\nGunawan",
-                          textAlign: TextAlign.center,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
+                      Tab(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: ColorPalette().iconBackgroundColor,
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Center(
+                            child: Text("CHANNELS"),
+                          ),
                         ),
-                      )
+                      ),
                     ],
                   ),
-                );
-              },
-            ),
-          )
-        ],
+                  // Tab Content
+                  SizedBox(
+                    height: 200,
+                    child: TabBarView(
+                      children: [
+                        // Content for "HOME" tab
+                        Center(
+                          child: Text("HOME Content"),
+                        ),
+                        // Content for "CHANNELS" tab
+                        Center(
+                          child: Text("CHANNELS Content"),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            )
+            //Tab Content
+          ],
+        ),
       ),
       drawer: const NavigationDrawer(
         children: [
