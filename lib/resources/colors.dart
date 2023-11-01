@@ -4,4 +4,5 @@ class ColorPalette {
   Color iconBackgroundColor = const Color(0xFFF1F1F1);
   Color mainWhiteColor = Colors.white;
   Color mainBlackColor = Colors.black;
+  Color onlineColor = const Color(0xFF53BE56);
 }

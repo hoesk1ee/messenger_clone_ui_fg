@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:gap/gap.dart';
 import 'package:unjuk_keterampilan_fg/resources/colors.dart';
 import 'package:unjuk_keterampilan_fg/widgets/icon_background_widget.dart';
 
@@ -8,6 +9,8 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int itemLength = 10;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -66,11 +69,11 @@ class MainApp extends StatelessWidget {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 8.0),
-        child: Column(
-          children: <Widget>[
-            Container(
+      body: Column(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0),
+            child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(24),
                 color: ColorPalette().iconBackgroundColor,
@@ -83,9 +86,58 @@ class MainApp extends StatelessWidget {
                   hintText: "Search",
                 ),
               ),
-            )
-          ],
-        ),
+            ),
+          ),
+          const Gap(8),
+          //Online User ListView
+          SizedBox(
+            height: 100,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: itemLength,
+              itemBuilder: (context, index) {
+                final isLastItem = index == 9;
+                final isFirstItem = index == 0;
+                return Padding(
+                  padding: EdgeInsets.only(
+                    left: isFirstItem ? 16.0 : 8.0,
+                    right: isLastItem ? 16.0 : 8.0,
+                  ),
+                  child: Column(
+                    children: [
+                      badges.Badge(
+                        badgeContent: const SizedBox(
+                          height: 10.0,
+                          width: 10.0,
+                        ),
+                        position:
+                            badges.BadgePosition.bottomEnd(end: -2, bottom: -4),
+                        badgeStyle: badges.BadgeStyle(
+                          badgeColor: ColorPalette().onlineColor,
+                          borderSide: BorderSide(
+                              color: ColorPalette().mainWhiteColor, width: 3),
+                        ),
+                        child: const CircleAvatar(
+                          radius: 30,
+                        ),
+                      ),
+                      const Gap(4),
+                      const SizedBox(
+                        width: 60,
+                        child: Text(
+                          "Ferry\nGunawan",
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      )
+                    ],
+                  ),
+                );
+              },
+            ),
+          )
+        ],
       ),
       drawer: const NavigationDrawer(
         children: [
