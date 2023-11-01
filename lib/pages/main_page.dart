@@ -66,7 +66,27 @@ class MainApp extends StatelessWidget {
           ],
         ),
       ),
-      body: Container(),
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 8.0),
+        child: Column(
+          children: <Widget>[
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(24),
+                color: ColorPalette().iconBackgroundColor,
+              ),
+              child: const TextField(
+                textAlignVertical: TextAlignVertical.center,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.search),
+                  border: InputBorder.none,
+                  hintText: "Search",
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
       drawer: const NavigationDrawer(
         children: [
           Text('Drawer'),
