@@ -1,6 +1,6 @@
-# unjuk_keterampilan_fg
+# unjuk_keterampilan_fg - Messenger UI Clone
 
-A new Flutter project.
+This project was created to fulfill a task given by Alterra.
 
 ## Getting Started
 
