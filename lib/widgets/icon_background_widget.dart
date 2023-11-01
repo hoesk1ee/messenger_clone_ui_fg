@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:unjuk_keterampilan_fg/resources/colors.dart';
 
 class IconBackgroundWidget extends StatelessWidget {
   const IconBackgroundWidget(
@@ -14,9 +15,9 @@ class IconBackgroundWidget extends StatelessWidget {
       margin: const EdgeInsets.only(left: 12),
       width: width,
       height: height,
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: Color(0xFFF1F1F1),
+        color: ColorPalette().iconBackgroundColor,
       ),
       child: child,
     );

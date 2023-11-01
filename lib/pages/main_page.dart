@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:unjuk_keterampilan_fg/resources/colors.dart';
 import 'package:unjuk_keterampilan_fg/widgets/icon_background_widget.dart';
 
 class MainApp extends StatelessWidget {
@@ -12,14 +13,15 @@ class MainApp extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         leading: badges.Badge(
-          badgeStyle: const badges.BadgeStyle(
-            borderSide: BorderSide(color: Colors.white, width: 3),
+          badgeStyle: badges.BadgeStyle(
+            borderSide:
+                BorderSide(color: ColorPalette().mainWhiteColor, width: 3),
           ),
-          badgeContent: const Padding(
-            padding: EdgeInsets.all(3.0),
+          badgeContent: Padding(
+            padding: const EdgeInsets.all(3.0),
             child: Text(
               "7",
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: ColorPalette().mainWhiteColor),
             ),
           ),
           position: badges.BadgePosition.topEnd(top: -6, end: -4),
@@ -73,53 +75,3 @@ class MainApp extends StatelessWidget {
     );
   }
 }
-
-// Stack(
-//           children: [
-//             Container(
-//               decoration: const BoxDecoration(
-//                 shape: BoxShape.circle,
-//                 color: Color(0xFFF1F1F1),
-//               ),
-//               child: Builder(builder: (BuildContext context) {
-//                 return IconButton(
-//                   splashRadius: 16,
-//                   onPressed: () {
-//                     Scaffold.of(context).openDrawer();
-//                   },
-//                   icon: const Icon(Icons.menu_rounded),
-//                   iconSize: 28,
-//                   tooltip:
-//                       MaterialLocalizations.of(context).openAppDrawerTooltip,
-//                 );
-//               }),
-//             ),
-//             //Notification Badge
-//             Positioned(
-//               right: -2,
-//               top: -8,
-//               child: Container(
-//                 constraints: BoxConstraints(
-//                   minWidth: 24,
-//                   minHeight: 24,
-//                 ),
-//                 decoration: BoxDecoration(
-//                   border: Border.all(color: Colors.white, width: 3),
-//                   shape: BoxShape.circle,
-//                   color: Colors.red,
-//                 ),
-//                 child: Padding(
-//                   padding: const EdgeInsets.all(4.0),
-//                   child: Text(
-//                     "7",
-//                     style: TextStyle(
-//                       color: Colors.white,
-//                       fontSize: 16,
-//                     ),
-//                     textAlign: TextAlign.center,
-//                   ),
-//                 ),
-//               ),
-//             )
-//           ],
-//         ),

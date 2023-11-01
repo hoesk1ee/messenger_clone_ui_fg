@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:unjuk_keterampilan_fg/pages/main_page.dart';
+import 'package:unjuk_keterampilan_fg/resources/colors.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,8 +13,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        appBarTheme: const AppBarTheme(
-          foregroundColor: Colors.black,
+        appBarTheme: AppBarTheme(
+          foregroundColor: ColorPalette().mainBlackColor,
         ),
       ),
       home: const MainApp(),
