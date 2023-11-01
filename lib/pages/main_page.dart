@@ -42,17 +42,17 @@ class MainApp extends StatelessWidget {
             ),
           ),
         ),
-        title: Row(
-          children: [
-            const Text(
-              "Chats",
-              style: TextStyle(
-                fontSize: 26,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const Spacer(),
-            IconBackgroundWidget(
+        title: const Text(
+          "Chats",
+          style: TextStyle(
+            fontSize: 26,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16.0),
+            child: IconBackgroundWidget(
               width: 42,
               height: 42,
               child: IconButton(
@@ -60,9 +60,9 @@ class MainApp extends StatelessWidget {
                 onPressed: () {},
                 icon: const Icon(Icons.edit_rounded),
               ),
-            )
-          ],
-        ),
+            ),
+          ),
+        ],
       ),
       body: Container(),
       drawer: const NavigationDrawer(
