@@ -11,7 +11,7 @@ class IconBackgroundWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: 12),
+      margin: const EdgeInsets.only(left: 12),
       width: width,
       height: height,
       decoration: const BoxDecoration(
