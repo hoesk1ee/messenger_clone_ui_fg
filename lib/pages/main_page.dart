@@ -3,7 +3,9 @@ import 'package:badges/badges.dart' as badges;
 import 'package:gap/gap.dart';
 import 'package:unjuk_keterampilan_fg/models/user_model.dart';
 import 'package:unjuk_keterampilan_fg/pages/channel_page.dart';
+import 'package:unjuk_keterampilan_fg/pages/chat_page.dart';
 import 'package:unjuk_keterampilan_fg/resources/colors.dart';
+import 'package:unjuk_keterampilan_fg/resources/constans.dart';
 import 'package:unjuk_keterampilan_fg/widgets/icon_background_widget.dart';
 import 'package:unjuk_keterampilan_fg/widgets/tab_choices_widget.dart';
 
@@ -12,84 +14,6 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int itemLength = 10;
-
-    List<UserModel> userData = [
-      UserModel(
-        name: "Andi Lukito",
-        picUrl:
-            "https://images.unsplash.com/photo-1633332755192-727a05c4013d?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnN8ZW58MHx8MHx8fDA%3D",
-        lastOnline: "48m",
-        isRead: false,
-        isOnline: false,
-        chat: [
-          'Halo',
-          'Makan yok',
-        ],
-        lastSent: '7:44 PM',
-      ),
-      UserModel(
-        name: "Windah Basudara",
-        picUrl:
-            "https://yt3.googleusercontent.com/ZqDuYMGIahUkyQ_NadOV_oy8OrxFpBI3YHpJOQYHoUmXeJT-66aPW-UB7H_q6fjcNhkBQqZc=s900-c-k-c0x00ffffff-no-rj",
-        lastOnline: "0m",
-        isRead: true,
-        isOnline: true,
-        chat: [
-          'Bro',
-          'Hari ini main game apa ya?',
-          'Ok ntar gua download dulu',
-        ],
-        lastSent: '4.23 PM',
-      ),
-      UserModel(
-        name: "Kamado Tanjiro",
-        picUrl:
-            "https://cdns.klimg.com/kapanlagi.com/p/kamadotanjirosdfg4501000.jpeg",
-        lastOnline: "12m",
-        isRead: true,
-        isOnline: false,
-        chat: [
-          'Bangun bro',
-          'Kapan belajar?',
-          "Hari ini belajar pernapasan api jurus baru",
-        ],
-        lastSent: '9.32 AM',
-      ),
-      UserModel(
-        name: "Fiony Alveria Tantri",
-        picUrl:
-            "https://assets.ayobandung.com/crop/0x0:0x0/750x500/webp/photo/p1/273/2023/09/01/IMG_20230901_211629-571827399.jpg",
-        lastOnline: "0m",
-        isRead: false,
-        isOnline: true,
-        chat: [
-          'Gimana hari ini?',
-          'Bagus deh',
-          'Udah tadi siang, kamu udah?',
-          'Ok met istirahat ya!',
-        ],
-        lastSent: '6.56 AM',
-      ),
-      UserModel(
-        name: "Yessica Tamara Sialagan",
-        picUrl:
-            "https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/p2/01/2023/10/04/chikajkt48-4034482779.png",
-        lastOnline: "12m",
-        isRead: false,
-        isOnline: false,
-        chat: [
-          'Eh ntar ku pergi sama cepio',
-          'Mau titip salam ga?',
-          'Ohiya kan bisa langsung ya',
-          'Ok titip salam ya buat dia',
-        ],
-        lastSent: '5.23 AM',
-      )
-    ];
-
-    int onlineItemCount = userData.where((user) => user.isOnline).length;
-
     List<UserModel> onlineUsers =
         userData.where((user) => user.isOnline).toList();
 
@@ -284,94 +208,110 @@ class MainApp extends StatelessWidget {
                     itemCount: userData.length,
                     itemBuilder: ((context, index) {
                       var data = userData[index];
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: 16),
-                        child: Row(
-                          children: [
-                            badges.Badge(
-                              badgeContent: !data.isOnline
-                                  ? Text(
-                                      data.lastOnline,
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.w800,
-                                          fontSize: 9),
-                                    )
-                                  : const SizedBox(
-                                      height: 10.0,
-                                      width: 10.0,
-                                    ),
-                              position: badges.BadgePosition.bottomEnd(
-                                end: -4,
-                                bottom: -4,
-                              ),
-                              badgeStyle: badges.BadgeStyle(
-                                borderRadius: BorderRadius.circular(12),
-                                shape: data.isOnline
-                                    ? badges.BadgeShape.circle
-                                    : badges.BadgeShape.square,
-                                badgeColor: data.isOnline
-                                    ? ColorPalette().onlineColor
-                                    : const Color(0xFFD3FFC8),
-                                borderSide: BorderSide(
-                                  color: ColorPalette().mainWhiteColor,
-                                  width: 3,
-                                ),
-                              ),
-                              child: CircleAvatar(
-                                radius: 28,
-                                backgroundImage: NetworkImage(data.picUrl),
+                      return InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ChatPage(
+                                name: data.name,
+                                lastOnline: data.lastOnline,
+                                isOnline: data.isOnline,
+                                chat: data.chat,
+                                picUrl: data.picUrl,
                               ),
                             ),
-                            const Gap(16),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  data.name,
-                                  style: TextStyle(
-                                    fontSize: 17,
-                                    fontWeight:
-                                        data.isRead ? null : FontWeight.bold,
+                          );
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 16),
+                          child: Row(
+                            children: [
+                              badges.Badge(
+                                badgeContent: !data.isOnline
+                                    ? Text(
+                                        data.lastOnline,
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.w800,
+                                            fontSize: 9),
+                                      )
+                                    : const SizedBox(
+                                        height: 10.0,
+                                        width: 10.0,
+                                      ),
+                                position: badges.BadgePosition.bottomEnd(
+                                  end: -4,
+                                  bottom: -4,
+                                ),
+                                badgeStyle: badges.BadgeStyle(
+                                  borderRadius: BorderRadius.circular(12),
+                                  shape: data.isOnline
+                                      ? badges.BadgeShape.circle
+                                      : badges.BadgeShape.square,
+                                  badgeColor: data.isOnline
+                                      ? ColorPalette().onlineColor
+                                      : const Color(0xFFD3FFC8),
+                                  borderSide: BorderSide(
+                                    color: ColorPalette().mainWhiteColor,
+                                    width: 3,
                                   ),
                                 ),
-                                const Gap(6),
-                                SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width - 110,
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Flexible(
-                                        fit: FlexFit.loose,
-                                        child: Text(
-                                          data.chat.last,
-                                          overflow: TextOverflow.ellipsis,
+                                child: CircleAvatar(
+                                  radius: 28,
+                                  backgroundImage: NetworkImage(data.picUrl),
+                                ),
+                              ),
+                              const Gap(16),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    data.name,
+                                    style: TextStyle(
+                                      fontSize: 17,
+                                      fontWeight:
+                                          data.isRead ? null : FontWeight.bold,
+                                    ),
+                                  ),
+                                  const Gap(6),
+                                  SizedBox(
+                                    width:
+                                        MediaQuery.of(context).size.width - 110,
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Flexible(
+                                          fit: FlexFit.loose,
+                                          child: Text(
+                                            data.chat.last,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: TextStyle(
+                                              fontWeight: data.isRead
+                                                  ? null
+                                                  : FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
+                                        const Text(
+                                          " · ",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          data.lastSent,
                                           style: TextStyle(
                                             fontWeight: data.isRead
                                                 ? null
                                                 : FontWeight.bold,
                                           ),
                                         ),
-                                      ),
-                                      const Text(
-                                        " · ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Text(
-                                        data.lastSent,
-                                        style: TextStyle(
-                                          fontWeight: data.isRead
-                                              ? null
-                                              : FontWeight.bold,
-                                        ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
-                            )
-                          ],
+                                ],
+                              )
+                            ],
+                          ),
                         ),
                       );
                     }),

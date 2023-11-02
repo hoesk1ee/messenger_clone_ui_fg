@@ -6,4 +6,5 @@ class ColorPalette {
   Color mainBlackColor = Colors.black;
   Color onlineColor = const Color(0xFF53BE56);
   Color unselectedColor = const Color.fromARGB(255, 170, 170, 170);
+  Color chatActionColor = const Color(0xFFB32DCA);
 }
