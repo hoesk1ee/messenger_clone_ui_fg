@@ -1,23 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:unjuk_keterampilan_fg/resources/colors.dart';
+import 'package:unjuk_keterampilan_fg/resources/constants.dart';
 import 'package:unjuk_keterampilan_fg/widgets/chat_actions_widget.dart';
 import 'package:unjuk_keterampilan_fg/widgets/icon_background_widget.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:unjuk_keterampilan_fg/widgets/my_chat_bubble_widget.dart';
+import 'package:unjuk_keterampilan_fg/widgets/user_chat_bubble_widget.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage(
       {super.key,
+      required this.userChat,
+      required this.myChat,
       required this.name,
       required this.lastOnline,
       required this.isOnline,
-      required this.chat,
+      required this.lastSent,
       required this.picUrl});
 
   final String name;
+  final String lastSent;
   final String lastOnline;
   final bool isOnline;
-  final List<String> chat;
+  final List<String> myChat;
+  final List<String> userChat;
   final String picUrl;
 
   @override
@@ -113,55 +120,91 @@ class _ChatPageState extends State<ChatPage> {
           ),
         ],
       ),
-      body: Center(
-        child: Column(
-          children: [
-            const Gap(24),
-            widget.isOnline
-                ? badges.Badge(
-                    badgeContent: const SizedBox(
-                      height: 16.0,
-                      width: 16.0,
-                    ),
-                    position: badges.BadgePosition.bottomEnd(
-                      end: -2,
-                      bottom: 0,
-                    ),
-                    badgeStyle: badges.BadgeStyle(
-                      badgeColor: ColorPalette().onlineColor,
-                      borderSide: BorderSide(
-                        color: ColorPalette().mainWhiteColor,
-                        width: 3,
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Center(
+            child: Column(
+              children: [
+                const Gap(24),
+                widget.isOnline
+                    ? badges.Badge(
+                        badgeContent: const SizedBox(
+                          height: 16.0,
+                          width: 16.0,
+                        ),
+                        position: badges.BadgePosition.bottomEnd(
+                          end: -2,
+                          bottom: 0,
+                        ),
+                        badgeStyle: badges.BadgeStyle(
+                          badgeColor: ColorPalette().onlineColor,
+                          borderSide: BorderSide(
+                            color: ColorPalette().mainWhiteColor,
+                            width: 3,
+                          ),
+                        ),
+                        child: CircleAvatar(
+                          radius: 48,
+                          backgroundImage: NetworkImage(widget.picUrl),
+                        ),
+                      )
+                    : CircleAvatar(
+                        radius: 48,
+                        backgroundImage: NetworkImage(widget.picUrl),
                       ),
-                    ),
-                    child: CircleAvatar(
-                      radius: 48,
-                      backgroundImage: NetworkImage(widget.picUrl),
-                    ),
-                  )
-                : CircleAvatar(
-                    radius: 48,
-                    backgroundImage: NetworkImage(widget.picUrl),
+                const Gap(16),
+                Text(
+                  widget.name,
+                  style: const TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
                   ),
-            const Gap(16),
-            Text(
-              widget.name,
-              style: const TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
+                ),
+                const Gap(4),
+                const Text("Facebook"),
+                Text(
+                  "You're friends on Facebook",
+                  style: TextStyle(
+                    color: ColorPalette().unselectedColor,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                const Gap(8),
+                //View Profile Button
+                InkWell(
+                  borderRadius: BorderRadius.circular(16),
+                  onTap: () {},
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      color: ColorPalette().iconBackgroundColor,
+                    ),
+                    child: const Padding(
+                      padding: EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 8.0),
+                      child: Text("VIEW PROFILE"),
+                    ),
+                  ),
+                ),
+                const Gap(32),
+                //Chat Date
+                Text(
+                  widget.lastSent,
+                  style: TextStyle(
+                    color: ColorPalette().unselectedColor,
+                  ),
+                ),
+              ],
             ),
-            const Gap(4),
-            const Text("Facebook"),
-            Text(
-              "You're friends on Facebook",
-              style: TextStyle(
-                color: ColorPalette().unselectedColor,
-                fontWeight: FontWeight.w500,
-              ),
-            )
-          ],
-        ),
+          ),
+          //Chat List
+          //Masih statis buat define chatnya
+          UserChatBubbleWidget(message: widget.userChat[0]),
+          MyChatBubbleWidget(message: widget.myChat[0]),
+          UserChatBubbleWidget(message: widget.userChat[1]),
+          MyChatBubbleWidget(message: widget.myChat[1]),
+          UserChatBubbleWidget(message: widget.userChat[2]),
+        ],
       ),
     );
   }

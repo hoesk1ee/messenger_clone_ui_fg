@@ -5,7 +5,7 @@ import 'package:unjuk_keterampilan_fg/models/user_model.dart';
 import 'package:unjuk_keterampilan_fg/pages/channel_page.dart';
 import 'package:unjuk_keterampilan_fg/pages/chat_page.dart';
 import 'package:unjuk_keterampilan_fg/resources/colors.dart';
-import 'package:unjuk_keterampilan_fg/resources/constans.dart';
+import 'package:unjuk_keterampilan_fg/resources/constants.dart';
 import 'package:unjuk_keterampilan_fg/widgets/icon_background_widget.dart';
 import 'package:unjuk_keterampilan_fg/widgets/tab_choices_widget.dart';
 
@@ -214,10 +214,12 @@ class MainApp extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                               builder: (context) => ChatPage(
+                                lastSent: data.lastSent,
                                 name: data.name,
                                 lastOnline: data.lastOnline,
                                 isOnline: data.isOnline,
-                                chat: data.chat,
+                                userChat: data.userChat,
+                                myChat: data.myChat,
                                 picUrl: data.picUrl,
                               ),
                             ),
@@ -283,7 +285,7 @@ class MainApp extends StatelessWidget {
                                         Flexible(
                                           fit: FlexFit.loose,
                                           child: Text(
-                                            data.chat.last,
+                                            data.userChat.last,
                                             overflow: TextOverflow.ellipsis,
                                             style: TextStyle(
                                               fontWeight: data.isRead

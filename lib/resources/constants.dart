@@ -9,9 +9,14 @@ List<UserModel> userData = [
     lastOnline: "48m",
     isRead: false,
     isOnline: false,
-    chat: [
+    userChat: [
       'Halo',
       'Makan yok',
+      'Ok bro',
+    ],
+    myChat: [
+      'Halo bro',
+      'Kuy lah, ntar gua kabarin kalo udh nyampe',
     ],
     lastSent: '7:44 PM',
   ),
@@ -22,10 +27,14 @@ List<UserModel> userData = [
     lastOnline: "0m",
     isRead: true,
     isOnline: true,
-    chat: [
+    userChat: [
       'Bro',
       'Hari ini main game apa ya?',
       'Ok ntar gua download dulu',
+    ],
+    myChat: [
+      'Iya bang kenapa?',
+      'Mau mabar Fortnite ga?',
     ],
     lastSent: '4.23 PM',
   ),
@@ -36,10 +45,15 @@ List<UserModel> userData = [
     lastOnline: "12m",
     isRead: true,
     isOnline: false,
-    chat: [
+    userChat: [
       'Bangun bro',
       'Kapan belajar?',
       "Hari ini belajar pernapasan api jurus baru",
+    ],
+    myChat: [
+      'Iya udh bangun',
+      'Sore aja?',
+      'Belajar apa kita?',
     ],
     lastSent: '9.32 AM',
   ),
@@ -50,11 +64,16 @@ List<UserModel> userData = [
     lastOnline: "0m",
     isRead: false,
     isOnline: true,
-    chat: [
+    userChat: [
       'Gimana hari ini?',
       'Bagus deh',
       'Udah tadi siang, kamu udah?',
       'Ok met istirahat ya!',
+    ],
+    myChat: [
+      'Baik2 aja',
+      "Kamu udah makan?",
+      'Udah, ini mau ist bntr habis olahragaa',
     ],
     lastSent: '6.56 AM',
   ),
@@ -65,11 +84,19 @@ List<UserModel> userData = [
     lastOnline: "12m",
     isRead: false,
     isOnline: false,
-    chat: [
+    userChat: [
       'Eh ntar ku pergi sama cepio',
       'Mau titip salam ga?',
       'Ohiya kan bisa langsung ya',
       'Ok titip salam ya buat dia',
+      'Mungkin sampe malem, ntar ku kabarin',
+    ],
+    myChat: [
+      'Ok hati2 ya',
+      'Udah lewat chat',
+      'iya dong',
+      'okok, sampe jamber nanti?',
+      'okok suruh cepio banyakin minum'
     ],
     lastSent: '5.23 AM',
   )
