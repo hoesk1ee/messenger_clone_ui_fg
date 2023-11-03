@@ -7,4 +7,6 @@ class ColorPalette {
   Color onlineColor = const Color(0xFF53BE56);
   Color unselectedColor = const Color.fromARGB(255, 170, 170, 170);
   Color chatActionColor = const Color(0xFFB32DCA);
+  Color iconChatColor = const Color.fromARGB(255, 7, 139, 247);
+  Color myChatBubbleColor = const Color(0xFF424DFF);
 }

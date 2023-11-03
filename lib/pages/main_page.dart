@@ -6,6 +6,7 @@ import 'package:unjuk_keterampilan_fg/pages/channel_page.dart';
 import 'package:unjuk_keterampilan_fg/pages/chat_page.dart';
 import 'package:unjuk_keterampilan_fg/resources/colors.dart';
 import 'package:unjuk_keterampilan_fg/resources/constants.dart';
+import 'package:unjuk_keterampilan_fg/widgets/custom_text_field.dart';
 import 'package:unjuk_keterampilan_fg/widgets/icon_background_widget.dart';
 import 'package:unjuk_keterampilan_fg/widgets/tab_choices_widget.dart';
 
@@ -85,22 +86,10 @@ class MainApp extends StatelessWidget {
           child: Column(
             children: <Widget>[
               //Search TextField
-              Padding(
-                padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(24),
-                    color: ColorPalette().iconBackgroundColor,
-                  ),
-                  child: const TextField(
-                    textAlignVertical: TextAlignVertical.center,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.search),
-                      border: InputBorder.none,
-                      hintText: "Search",
-                    ),
-                  ),
-                ),
+              const CustomTextField(
+                hintText: "Search",
+                prefixIcon: Icon(Icons.search),
+                padding: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0),
               ),
               const Gap(8),
               //Online User ListView

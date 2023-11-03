@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:unjuk_keterampilan_fg/resources/colors.dart';
+import 'package:unjuk_keterampilan_fg/resources/colors.dart';
 
 class MyChatBubbleWidget extends StatelessWidget {
   const MyChatBubbleWidget({
@@ -15,9 +17,9 @@ class MyChatBubbleWidget extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.fromLTRB(0, 4, 16, 0),
         padding: const EdgeInsets.all(12.0),
-        decoration: const BoxDecoration(
-          color: Color(0xFF424DFF),
-          borderRadius: BorderRadius.only(
+        decoration: BoxDecoration(
+          color: ColorPalette().myChatBubbleColor,
+          borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(24),
             bottomLeft: Radius.circular(24),
             topRight: Radius.circular(24),
