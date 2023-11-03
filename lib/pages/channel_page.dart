@@ -37,8 +37,6 @@ class _ChannelPageState extends State<ChannelPage> {
 
   @override
   Widget build(BuildContext context) {
-    int itemLength = 10;
-
     List<UserModel> onlineUsers =
         userData.where((user) => user.isOnline).toList();
 

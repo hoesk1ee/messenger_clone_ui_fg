@@ -16,16 +16,51 @@ class MainApp extends StatefulWidget {
 class _MainAppState extends State<MainApp> {
   int _selectedIndex = 0;
 
+  List<List<Widget>> actionButtons = [
+    [
+      const Icon(Icons.edit_rounded),
+    ],
+    [
+      const Icon(Icons.call),
+      const Icon(Icons.videocam),
+    ],
+    [
+      const Icon(Icons.book),
+    ],
+  ];
+
   List<String> appBarTitle = [
     'Chats',
     'Calls',
     'People',
   ];
 
+  List<Widget> _buildAppBarActions(BuildContext context) {
+    return actionButtons[_selectedIndex].map((action) {
+      return Builder(
+        builder: (context) {
+          return Padding(
+            padding: const EdgeInsets.only(right: 16.0),
+            child: IconBackgroundWidget(
+              width: 42,
+              height: 42,
+              child: IconButton(
+                splashRadius: 16,
+                onPressed: () {},
+                icon: action,
+              ),
+            ),
+          );
+        },
+      );
+    }).toList();
+  }
+
   void _onTabTapped(int index) {
     setState(() {
       _selectedIndex = index;
       appBarTitle[index];
+      actionButtons[index];
     });
   }
 
@@ -83,20 +118,7 @@ class _MainAppState extends State<MainApp> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 16.0),
-            child: IconBackgroundWidget(
-              width: 42,
-              height: 42,
-              child: IconButton(
-                splashRadius: 16,
-                onPressed: () {},
-                icon: const Icon(Icons.edit_rounded),
-              ),
-            ),
-          ),
-        ],
+        actions: _buildAppBarActions(context),
       ),
       body: IndexedStack(
         index: _selectedIndex,

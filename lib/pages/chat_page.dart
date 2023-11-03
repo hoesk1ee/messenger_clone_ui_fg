@@ -8,7 +8,6 @@ import 'package:unjuk_keterampilan_fg/resources/colors.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:unjuk_keterampilan_fg/resources/constants.dart';
 import 'package:unjuk_keterampilan_fg/widgets/custom_text_field.dart';
-import 'package:unjuk_keterampilan_fg/widgets/icon_background_widget.dart';
 import 'package:unjuk_keterampilan_fg/widgets/tab_choices_widget.dart';
 
 class ChatMainPage extends StatefulWidget {
