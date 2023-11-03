@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:unjuk_keterampilan_fg/pages/main_page.dart';
+import 'package:unjuk_keterampilan_fg/pages/bottom_nav_page.dart';
 import 'package:unjuk_keterampilan_fg/resources/colors.dart';
 
 void main() {
